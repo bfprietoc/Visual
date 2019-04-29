@@ -23,7 +23,7 @@ Complete la tabla:
 | Integrante | github nick |
 |------------|-------------|
 | Heyner   Martinez  |hsmartineza  |
-| Sergio   Loez      |LopezSergio40|
+| Sergio   Lopez      |LopezSergio40|
 
 ## Discusión
 
