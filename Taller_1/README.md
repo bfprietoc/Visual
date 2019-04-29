@@ -22,8 +22,8 @@ Complete la tabla:
 
 | Integrante | github nick |
 |------------|-------------|
-| Heyner     |hsmartineza  |
-| Martinez   |             |
+| Heyner   Martinez  |hsmartineza  |
+|                    |             |
 
 ## Discusión
 
