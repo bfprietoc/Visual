@@ -17,31 +17,30 @@ void draw() {
   pg.beginDraw();  
   pg.image(movie, 0, 0); 
   pg.endDraw();
-  //image(pg, 20, 20, 320,400);  
+  image(pg, 20, 20, 320,400);  
   
   float[][]mat = {{0,-1,0}, // SharpenKernel
                   {-1,5,-1},
                   {0,-1,0}};
-  //conv(mat, 380,300, 320, 400);
+  conv(mat, 380,300, 320, 400);
 
  
   float[][]mat1 = {{0.0625,0.125,0.0625}, //Blur Kernel
                     {0.125,0.25,0.125},
                     {0.0625,0.125,0.0625}};
                     
-  //conv(mat1, 20, 300, 320, 400);
+  conv(mat1, 20, 300, 320, 400);
  
   float[][]mat2 = {{-1,-1,-1}, //Outline kernel
                     {-1,8,-1},
                     {-1,-1,-1}};
   
-  //conv(mat2, 740, 300, 320, 400);
-  //Gray(movie, 0, 400);
-  //Neg(movie, 0, 200);
+  conv(mat2, 740, 300, 320, 400);
+  
+  //Gray(movie, 20, 20);
+  //Neg(movie, 20, 20);
   textSize(25);
   text("FPS: " + int(frameRate),700, 250);  
-  //println(frameRate);
-  //framerate();
 }
 
 float[][]matrix = new float[3][3];

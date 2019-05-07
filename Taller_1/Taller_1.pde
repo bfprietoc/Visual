@@ -24,11 +24,11 @@ float[][]mat2 = {{-1,-1,-1}, //Outline kernel
 
 
 void setup() {
-  size(1920, 1080);
+  size(1150, 500);
   img = loadImage("carro.jpg");
   pg = createGraphics(img.width, img.height);
   pg1 = createGraphics(img.width, img.height);
-  pg2 = createGraphics(600, 400);
+  pg2 = createGraphics(300, 200);
   histogram = makeHistogram(img);
 
   
@@ -38,28 +38,28 @@ void draw() {
   pg.beginDraw();  
   pg.image(img, 0, 0); 
   pg.endDraw();
-  image(pg, 20, 20, 600,400);
+  image(pg, 20, 20, 300,200);
   
   pg1.beginDraw();  
   pg1.image(img, 0, 0); 
   pg1.endDraw();
-  image(pg1, 640, 460, 600,400);  
+  image(pg1, 340, 230, 300,200);  
   pg2.beginDraw(); 
   //pg2.background(100);
   pg2.endDraw();
-  image(pg2,20, 460, 600, 400);
+  image(pg2,20, 230, 300, 200);
   
   gris();
   drawHistogram(histogram);
   
   if(option == 1){
-    conv(mat, 640,460, 600, 400);
+    conv(mat, 340,230, 300, 200);
   }
   else if(option == 2){
-    conv(mat1, 640,460, 600, 400);
+    conv(mat1, 340,230, 300, 200);
   }
   else if(option == 3){
-    conv(mat2, 640,460, 600, 400);
+    conv(mat2, 340,230, 300, 200);
   }
   else if(option == 4){
     segmentation(start,end);
@@ -74,24 +74,24 @@ void buttons(){
    int w = 400, h = 50;
    fill(130);
    stroke(0);
-   rect(1340, 40, w , h ,10);
+   rect(680, 40, w , h ,10);
    fill(0);
    textSize(32);
-   text("SharpenKernel",1340+80,80);
+   text("SharpenKernel",680+80,80);
    
    fill(130);
    stroke(0);
-   rect(1340, 140, w,h,10);
+   rect(680, 140, w,h,10);
    fill(0);
    textSize(32);
-   text("Blur Kernel",1340+100,170);
+   text("Blur Kernel",680+100,170);
    
    fill(130);
    stroke(0);
-   rect(1340, 250, w,h,10);
+   rect(680, 250, w,h,10);
    fill(0);
    textSize(32);
-   text("Outline Kernel",1340+100,280);
+   text("Outline Kernel",680+100,280);
    
 
 }
@@ -106,7 +106,7 @@ void gris(){
   }
   pg1.updatePixels();
   pg1.endDraw();
-  image(pg1, 640,20, 600, 400);
+  image(pg1, 340,20, 300, 200);
 }
 
 
@@ -140,8 +140,8 @@ void drawHistogram(int[] histogram) {
     int eje_x = int(map(i, 0, pg2.width, 0, 255));
     // Mapea el valor del histograma para ubicalrlo dentro de los valores del rectangulo a dibujar
     //println(eje_x);
-    int eje_y = int(map(histogram[eje_x], 0, histMaximo, 860, 460));
-    line(i+20,860, i+20, eje_y);
+    int eje_y = int(map(histogram[eje_x], 0, histMaximo, 430, 260));
+    line(i+20,430, i+20, eje_y);
   }
    pg2.endDraw();
    //image(pg2,20, 460, 600, 400);
@@ -151,21 +151,20 @@ void drawHistogram(int[] histogram) {
 
 void mouseClicked() {
   
-  if(mouseX > 1340 && mouseX < 1740 && mouseY > 40 && mouseY < 90){
+  if(mouseX > 680 && mouseX < 1080 && mouseY > 40 && mouseY < 90){
       option = 1;
   }
-  else if(mouseX > 1340 && mouseX < 1740 && mouseY > 140 && mouseY < 190){
+  else if(mouseX > 680 && mouseX < 1080 && mouseY > 140 && mouseY < 190){
       option = 2;
-      println("option 2");
   }
-  else if(mouseX > 1340 && mouseX < 1740 && mouseY > 250 && mouseY < 290)
+  else if(mouseX > 680 && mouseX < 1080 && mouseY > 250 && mouseY < 290)
   {
       option = 3;
   }
   
-  else if(mouseX > 20 && mouseX < 620 && mouseY > 460 && mouseY < 860){
+  else if(mouseX > 20 && mouseX < 340 && mouseY > 230 && mouseY < 430){
     //println(mouseX, mouseY);
-    line(mouseX, 860, mouseX, 460 );
+    line(mouseX, 430, mouseX, 230 );
     count += 1;
     if(count == 1)
       start = mouseX;
@@ -203,7 +202,7 @@ void segmentation(int start, int end){
   }  
   pg.updatePixels();  
   pg.endDraw();
-  image(pg, 20, 20, 600,400);
+  image(pg, 20, 20, 300,200);
 
 }
 
