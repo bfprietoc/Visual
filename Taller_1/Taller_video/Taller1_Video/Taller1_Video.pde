@@ -1,9 +1,6 @@
 import processing.video.*; 
-import java.util.ArrayList;
 
 PGraphics pg,pg1;
-//ArrayList<Float> lista = new ArrayList<Float>();
-float[] framerate = new float[250];
 Movie movie;
 
 void setup() {  
@@ -16,31 +13,34 @@ void setup() {
 }
 
 void draw() { 
+  background(0);
   pg.beginDraw();  
   pg.image(movie, 0, 0); 
   pg.endDraw();
-  image(pg, 20, 20, 320,400);  
+  //image(pg, 20, 20, 320,400);  
   
   float[][]mat = {{0,-1,0}, // SharpenKernel
                   {-1,5,-1},
                   {0,-1,0}};
-  conv(mat, 380,300, 320, 400);
+  //conv(mat, 380,300, 320, 400);
 
  
   float[][]mat1 = {{0.0625,0.125,0.0625}, //Blur Kernel
                     {0.125,0.25,0.125},
                     {0.0625,0.125,0.0625}};
                     
-  conv(mat1, 20, 300, 320, 400);
+  //conv(mat1, 20, 300, 320, 400);
  
   float[][]mat2 = {{-1,-1,-1}, //Outline kernel
                     {-1,8,-1},
                     {-1,-1,-1}};
   
-  conv(mat2, 740, 300, 320, 400);
+  //conv(mat2, 740, 300, 320, 400);
   //Gray(movie, 0, 400);
   //Neg(movie, 0, 200);
-  println(frameRate);
+  textSize(25);
+  text("FPS: " + int(frameRate),700, 250);  
+  //println(frameRate);
   //framerate();
 }
 
@@ -91,17 +91,6 @@ color conv(int x, int y, float[][] matrix, int matrixsize, PImage img)
   btotal = constrain(btotal, 0, 255);
   // Return the resulting color
   return color(rtotal, gtotal, btotal);
-}
-
-void framerate(){
-  int m = millis();
-  int x = 0;
-  while(m < 18000){
-      framerate[x] = frameRate;
-      //delay(1000);
-      x++;
-  }
-  //println(m);
 }
 
 void Neg(Movie movie, int w, int h){
