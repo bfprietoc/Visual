@@ -14,7 +14,9 @@ Complete la tabla:
 
 | Integrante | github nick |
 |------------|-------------|
-|Sergio Lopez Martinez            | SergioLopez40            |
+| Heyner   Martinez  |hsmartineza  |
+| Sergio   Lopez     |LopezSergio40|
+| Brayan   Prieto    |bfprietoc|
 
 ## Discusión
 
