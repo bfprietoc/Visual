@@ -31,6 +31,9 @@ Complete la tabla:
 
 2. Describa brevememente las referencias estudiadas y los posibles temas en los que le gustaría profundizar
 
+*Ilusiones Ambiguas: Son imágenes con ilusiones ópticas que explotan similitudes gráficas y otras propiedades de la interpretación del sistema visual entre dos o más formas distintas de imágenes. Introducen el fenómeno de la percepción multiestable, es decir una imagen es capaz de proveer múltiples percepciones estables. En nuestro ejemplo especifico, es posible ver como una imagen vista desde dos angulos diferentes permite identificar con mayor claridad un animal u otro(León y Ratón).
+*Moiré Pattern: Es un patrón de interferencia que se forma cuando se superponen dos rejillas de líneas, ya sean rectas o curvas, con un cierto ángulo o cuando tales rejillas tienen tamaños ligeramente diferentes. La visión humana crea la ilusión de unas bandas oscuras y claras horizontales, que se superponen a las líneas finas que en realidad son las que forman el trazo. Patrones de moiré más complejos pueden formarse igualmente al superponer figuras complejas hechas de líneas curvas y entrelazadas. Si cada una de las rejillas tiene un color distinto, el patrón de muaré resultante será de un tercer color. Me gustaria profundizar mas en este tema, y en como estas figuras mas complejas pueden generar patrones mas complejos que simulan movimientos y colores inesperados.
+
 ## Entrega
 
 * Hacer [fork](https://help.github.com/articles/fork-a-repo/) de la plantilla. Plazo: 12/5/19 a las 24h.
