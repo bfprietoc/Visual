@@ -15,7 +15,7 @@ Complete la tabla:
 | Integrante | github nick |
 |------------|-------------|
 | Heyner   Martinez  |hsmartineza  |
-| Sergio   Lopez     |LopezSergio40|
+| Sergio   Lopez     |SergioLopez40|
 | Brayan   Prieto    |bfprietoc|
 
 ## Discusión
@@ -25,7 +25,7 @@ Complete la tabla:
 | Ilusión | Categoria | Referencia | Tipo de interactividad (si aplica) | URL código base (si aplica) |
 |---------|-----------|------------|------------------------------------|-----------------------------|
 |Ambigua|Ambigua|http://www6.uniovi.es/vision/intro/node5.html|         |                             |
-|Moire_Interactive|Movimiento ilusorio(Motion)| https://michaelbach.de/ot/mot-scanimation/|KeyPressed: 1,2,3 y4 para elegir imagen del fondo||
+|Moire_Interactive|Movimiento ilusorio(Motion)| https://michaelbach.de/ot/mot-scanimation/|KeyPressed: 1,2,3 y4 para elegir imagen del fondo y rejilla movil controlada con el mouse||
 |Moire_Movement|Movimiento ilusorio(Motion)|https://michaelbach.de/ot/lum-moire1/index.html|MouseClicked: Para cambiar la direccion del movimiento||
 |Orbita|           |            |                                    |                             |
 |Wheel|           |            |                                    |                             |
