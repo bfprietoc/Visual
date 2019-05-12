@@ -14,7 +14,7 @@ Complete la tabla:
 
 | Integrante | github nick |
 |------------|-------------|
-|            |             |
+|Sergio Lopez Martinez            | SergioLopez40            |
 
 ## Discusión
 
