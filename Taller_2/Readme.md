@@ -22,11 +22,11 @@ Complete la tabla:
 
 | Ilusión | Categoria | Referencia | Tipo de interactividad (si aplica) | URL código base (si aplica) |
 |---------|-----------|------------|------------------------------------|-----------------------------|
-|         |           |            |                                    |                             |
-|         |           |            |                                    |                             |
-|         |           |            |                                    |                             |
-|         |           |            |                                    |                             |
-|         |           |            |                                    |                             |
+|Ambigua  |           |            |                                    |                             |
+|Moire_Interactive|Movimiento ilusorio(Motion)| https://michaelbach.de/ot/mot-scanimation/|KeyPressed: 1,2,3 y4 para elegir imagen del fondo|
+|Moire_Movement|           |            |                                    |                             |
+|Orbita|           |            |                                    |                             |
+|Wheel|           |            |                                    |                             |
 |         |           |            |                                    |                             |
 
 2. Describa brevememente las referencias estudiadas y los posibles temas en los que le gustaría profundizar
