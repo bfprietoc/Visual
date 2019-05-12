@@ -22,9 +22,9 @@ Complete la tabla:
 
 | Ilusión | Categoria | Referencia | Tipo de interactividad (si aplica) | URL código base (si aplica) |
 |---------|-----------|------------|------------------------------------|-----------------------------|
-|Ambigua  |           |            |                                    |                             |
-|Moire_Interactive|Movimiento ilusorio(Motion)| https://michaelbach.de/ot/mot-scanimation/|KeyPressed: 1,2,3 y4 para elegir imagen del fondo|
-|Moire_Movement|           |            |                                    |                             |
+|Ambigua|Ambigua|http://www6.uniovi.es/vision/intro/node5.html|         |                             |
+|Moire_Interactive|Movimiento ilusorio(Motion)| https://michaelbach.de/ot/mot-scanimation/|KeyPressed: 1,2,3 y4 para elegir imagen del fondo||
+|Moire_Movement|Movimiento ilusorio(Motion)|https://michaelbach.de/ot/lum-moire1/index.html|MouseClicked: Para cambiar la direccion del movimiento||
 |Orbita|           |            |                                    |                             |
 |Wheel|           |            |                                    |                             |
 |         |           |            |                                    |                             |
