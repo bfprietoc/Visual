@@ -27,8 +27,8 @@ Complete la tabla:
 |Ambigua|Ambigua|http://www6.uniovi.es/vision/intro/node5.html|         |                             |
 |Moire_Interactive|Movimiento ilusorio(Motion)| https://michaelbach.de/ot/mot-scanimation/|KeyPressed: 1,2,3 y4 para elegir imagen del fondo y rejilla movil controlada con el mouse||
 |Moire_Movement|Movimiento ilusorio(Motion)|https://michaelbach.de/ot/lum-moire1/index.html|MouseClicked: Para cambiar la direccion del movimiento||
-|Orbita|           |            |                                    |                             |
-|Wheel|           |            |                                    |                             |
+|Orbita|Ambigua/Silueta|https://michaelbach.de/ot/sze-silhouette/|MouseClick|                             |
+|Wheel|Movimiento| Presentacion Clase  |                                    |                             |
 |Moire Box|Geométrica |https://en.wikipedia.org/wiki/Moir%C3%A9_pattern             |Con las teclas Up y Down aumenta y disminuye respectivamente la distancia  de separacion de las lineas                                    |                https://thinkspacestudio.com/tutorials/moire_loops_in_java             |
 |Ponzo Illusion   | Distorsión          | https://feeldoppel.com/blogs/news/optical-illusions-explained    | Con la tecla UP dibuja las líneas para verificar que el tamaño de los rectángulos sean iguales|
 
