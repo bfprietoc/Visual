@@ -29,7 +29,9 @@ Complete la tabla:
 |Moire_Movement|Movimiento ilusorio(Motion)|https://michaelbach.de/ot/lum-moire1/index.html|MouseClicked: Para cambiar la direccion del movimiento||
 |Orbita|           |            |                                    |                             |
 |Wheel|           |            |                                    |                             |
-|         |           |            |                                    |                             |
+|Moire Box         |           |            |                                    |                             |
+|Ponzo Illusion   | Distorsión          | https://feeldoppel.com/blogs/news/optical-illusions-explained    | Con la tecla UP dibuja las lineas para verificar que el tamaño de los rectasngulos sea el mismo|
+
 
 2. Describa brevememente las referencias estudiadas y los posibles temas en los que le gustaría profundizar
 
