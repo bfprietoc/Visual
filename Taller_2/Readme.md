@@ -29,8 +29,8 @@ Complete la tabla:
 |Moire_Movement|Movimiento ilusorio(Motion)|https://michaelbach.de/ot/lum-moire1/index.html|MouseClicked: Para cambiar la direccion del movimiento||
 |Orbita|           |            |                                    |                             |
 |Wheel|           |            |                                    |                             |
-|Moire Box         |           |            |                                    |                             |
-|Ponzo Illusion   | Distorsión          | https://feeldoppel.com/blogs/news/optical-illusions-explained    | Con la tecla UP dibuja las lineas para verificar que el tamaño de los rectasngulos sea el mismo|
+|Moire Box|Geométrica |https://en.wikipedia.org/wiki/Moir%C3%A9_pattern             |Con las teclas Up y Down aumenta y disminuye respectivamente la distancia  de separacion de las lineas                                    |                https://thinkspacestudio.com/tutorials/moire_loops_in_java             |
+|Ponzo Illusion   | Distorsión          | https://feeldoppel.com/blogs/news/optical-illusions-explained    | Con la tecla UP dibuja las líneas para verificar que el tamaño de los rectángulos sean iguales|
 
 
 2. Describa brevememente las referencias estudiadas y los posibles temas en los que le gustaría profundizar
