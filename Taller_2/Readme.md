@@ -1,4 +1,4 @@
-# Taller ilusiones visuales
+ # Taller ilusiones visuales
 
 ## Propósito
 
@@ -41,6 +41,8 @@ Complete la tabla:
 * Moire box: Se trata de cuatro triángulos hechos con varias líneas trazadas desde la parte superior el punto de convergencia a la base, en donde se visualizar un patrón Moire con forma de diamante, este patrón se debe a que se esta dibujando en un pantalla de computador que es una cuadricula de pixeles, el cual realiza una aproximación de una línea recta, rellenado con pixeles con variables de color, este proceso se le conoce como anti-aliasing.
 <img src="https://thinkspacestudio.com/images/tuts/triangle-line.png" >
 
+
+Me gustaría abordar en el tema de anti-aliasing, como se aplican estas técnicas principalmente en los videojuegos.
 
 ## Entrega
 
