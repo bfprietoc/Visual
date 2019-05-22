@@ -3,6 +3,7 @@ int distance = 5;
 void setup()
 {
   size( 600, 400 );
+  smooth(8);
 }
 
 void draw()
