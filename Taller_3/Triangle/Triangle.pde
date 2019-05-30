@@ -97,6 +97,9 @@ void triangleRaster() {
   float z2 = (1/scene.screenLocation(v2).z());
   float z3 = (1/scene.screenLocation(v3).z());
   
+  
+  
+  
   // node.location converts points from world to node
   // here we convert v1 to illustrate the idea
   if (debug) {
@@ -116,7 +119,7 @@ float[] edgeFun(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
   float e2 =((PosX - node.location(v2).x()) * (node.location(v3).y() - node.location(v2).y()) - (PosY - node.location(v2).y()) * (node.location(v3).x() - node.location(v2).x()));
   float e3 =((PosX - node.location(v3).x()) * (node.location(v1).y() - node.location(v3).y()) - (PosY - node.location(v3).y()) * (node.location(v1).x() - node.location(v3).x()));
   float area = (PosX-node.location(v1).x())*(node.location(v2).y()-node.location(v1).y())-(PosY-node.location(v1).y())*(node.location(v2).x()-node.location(v1).x());
-  if(e1>=0 && e2>=0 && e3>=0){
+  if(e1>=0 && e2>=0 && e3>=0  ||  e1<=0 && e2<=0 && e3<=0){
     float p1 = e1/area;
     float p2 = e2/area;
     float p3 = e3/area;
@@ -125,6 +128,38 @@ float[] edgeFun(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
   }
 float[] pesos = {0,0,0};
   return pesos;
+}
+
+boolean edgeV(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
+  float e1 =((PosX - node.location(v1).x()) * (node.location(v2).y() - node.location(v1).y()) - (PosY - node.location(v1).y()) * (node.location(v2).x() - node.location(v1).x()));
+  float e2 =((PosX - node.location(v2).x()) * (node.location(v3).y() - node.location(v2).y()) - (PosY - node.location(v2).y()) * (node.location(v3).x() - node.location(v2).x()));
+  float e3 =((PosX - node.location(v3).x()) * (node.location(v1).y() - node.location(v3).y()) - (PosY - node.location(v3).y()) * (node.location(v1).x() - node.location(v3).x()));
+  if(e1>=0 && e2>=0 && e3>=0  ||  e1<=0 && e2<=0 && e3<=0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+float[] edgeColors(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
+  float e1 =((PosX - node.location(v1).x()) * (node.location(v2).y() - node.location(v1).y()) - (PosY - node.location(v1).y()) * (node.location(v2).x() - node.location(v1).x()));
+  float e2 =((PosX - node.location(v2).x()) * (node.location(v3).y() - node.location(v2).y()) - (PosY - node.location(v2).y()) * (node.location(v3).x() - node.location(v2).x()));
+  float e3 =((PosX - node.location(v3).x()) * (node.location(v1).y() - node.location(v3).y()) - (PosY - node.location(v3).y()) * (node.location(v1).x() - node.location(v3).x()));
+  float area = (PosX-node.location(v1).x())*(node.location(v2).y()-node.location(v1).y())-(PosY-node.location(v1).y())*(node.location(v2).x()-node.location(v1).x());
+  if(e1>=0 && e2>=0 && e3>=0  ||  e1<=0 && e2<=0 && e3<=0){
+    float p1 = e1/area;
+    float p2 = e2/area;
+    float p3 = e3/area;
+    float r = (p1 * colR[0]) + (p2 * colG[0]) + (p3 * colB[0]); 
+    float g = (p1 * colR[1]) + (p2 * colG[1]) + (p3 * colB[1]);
+    float b = (p1 * colR[2]) + (p2 * colG[2]) + (p3 * colB[2]);
+    float[] colors = {r, g, b};
+    return colors;
+  } else { 
+    //println("Outside");
+    float[] colorsneg = {0, 0, 0};
+    return colorsneg;
+  }
 }
 
 void randomizeTriangle() {
