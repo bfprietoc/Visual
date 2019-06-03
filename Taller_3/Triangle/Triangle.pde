@@ -17,9 +17,10 @@ int n = 4;
 boolean triangleHint = true;
 boolean gridHint = true;
 boolean debug = true;
+boolean deep = true;
 
 // 3. Use FX2D, JAVA2D, P2D or P3D
-String renderer = P3D;
+String renderer = P2D;
 
 Point punto;
 
@@ -97,7 +98,84 @@ void triangleRaster() {
   float z2 = (1/scene.screenLocation(v2).z());
   float z3 = (1/scene.screenLocation(v3).z());
   
-  
+  for(float i=(0.5-pow(2,n-1)); i<=(0.5+pow(2,n-1)); i++){
+    for(float j=(0.5-pow(2,n-1)); j<=(0.5+pow(2,n-1)); j++){
+      
+      //rect(i,j,0.5,0.5);
+      //float test = (1/scene.screenLocation(v1).z());
+      //float test2 = (1/scene.eye().location(v1).z())*-1000;
+      //println("v1: " + test);
+      //println("v_: " + test2);
+      
+      if(edgeV(v1,v2,v3, i, j)){
+        rgb = edgeColors(v1,v2,v3,i,j);
+        if(deep){
+          float[] lam = edgeFun(v1,v2,v3,i,j);
+          float z = 1/(lam[0] * z1 + lam[1] * z2 + lam[2] * z3); 
+          //println("z: " + z);
+          rgb[0] *= z; rgb[1] *= z; rgb[2] *= z; 
+        }
+        //println(rgb);
+        pushStyle();
+        fill(rgb[0]*255, rgb[1]*255, rgb[2]*255);
+        rect(i,j,1,1);
+        popStyle();
+      } else {
+        int sum=0;
+        int index=0;
+        float prom=0;      
+
+        Vector A= new Vector(i-0.5, j-0.5);
+        Vector B= new Vector(i+0.5, j-0.5);
+        Vector C= new Vector(i-0.5, j+0.5);
+        Vector D= new Vector(i+0.5, j+0.5);
+        int b=0;
+
+        if (i==-3.5&&j==-3.5) { 
+          line(i-0.5, j-0.5, 10, 10);          
+          //ellipse(i-0.5,j-0.5,0.1,0.1);
+          //ellipse(i-0.5,j+0.5,0.1,0.1);          
+          //println(doIntersect(A,C,node.location(v1),node.location(v2)));
+        }
+        
+        if (doIntersect(A, B, node.location(v1), node.location(v2))||doIntersect(B, D, node.location(v1), node.location(v2))||doIntersect(C, D, node.location(v1), node.location(v2))||doIntersect(A, C, node.location(v1), node.location(v2))||
+          doIntersect(A, B, node.location(v2), node.location(v3))||doIntersect(B, D, node.location(v2), node.location(v3))||doIntersect(C, D, node.location(v2), node.location(v3))||doIntersect(A, C, node.location(v2), node.location(v3))||
+          doIntersect(A, B, node.location(v1), node.location(v3))||doIntersect(B, D, node.location(v1), node.location(v3))||doIntersect(C, D, node.location(v1), node.location(v3))||doIntersect(A, C, node.location(v1), node.location(v3))        
+          ) {
+          //println("--");
+          for (float x=i-0.5; x<=i+0.5; x+=0.09) {
+            for (float y=j-0.5; y<=j+0.5; y+=0.09) {
+              index++;
+              if (edgeV(v1, v2, v3, x, y))
+              {
+                sum++;
+                if (b==0)
+                {
+                  b=1;
+                  rgb = edgeColors(v1, v2, v3, x, y);
+                }
+              }
+            }
+          }
+
+          if (sum>0) {
+            //println(sum);
+            //println(sum);
+            prom=float(sum)/float(index);                  
+            //println(rgb);
+            pushStyle();
+            //println(prom);
+            //fill(rgb[0], rgb[1], rgb[2]);
+            fill(rgb[0]*prom, rgb[1]*prom, rgb[2]*prom);
+            //fill(100, 0, 0);                  
+            rect(i, j, 1, 1);                
+            popStyle();
+          }
+        }
+        //End else
+      }
+    }
+  }
   
   
   // node.location converts points from world to node
@@ -162,6 +240,55 @@ float[] edgeColors(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
   }
 }
 
+
+boolean onSegment(Vector p, Vector q, Vector r) {
+  if (node.location(p).x() <= max(node.location(p).x(), node.location(r).x()) && node.location(q).x() >= min(node.location(p).x(), node.location(r).x()) &&
+    node.location(q).y() <= max(node.location(p).y(), node.location(r).y()) && node.location(q).y() >= min(node.location(p).y(), node.location(r).y())) 
+  {
+    return true;
+  }
+  return false;
+}
+
+int orientation(Vector p, Vector q, Vector r) { 
+  // See https://www.geeksforgeeks.org/orientation-3-ordered-points/ 
+  // for details of below formula. 
+  float val = (node.location(q).y() - node.location(p).y()) * (node.location(r).x() - node.location(q).x()) - 
+    (node.location(q).x() - node.location(p).x()) * (node.location(r).y() - node.location(q).y()); 
+
+  if (val == 0) return 0;  // colinear 
+
+  return (val > 0)? 1: 2; // clock or counterclock wise
+} 
+
+boolean doIntersect(Vector p1, Vector q1, Vector p2, Vector q2) { 
+  // Find the four orientations needed for general and 
+  // special cases 
+  int o1 = orientation(p1, q1, p2); 
+  int o2 = orientation(p1, q1, q2); 
+  int o3 = orientation(p2, q2, p1); 
+  int o4 = orientation(p2, q2, q1); 
+
+  // General case 
+  if (o1 != o2 && o3 != o4) 
+    return true; 
+
+  // Special Cases 
+  // p1, q1 and p2 are colinear and p2 lies on segment p1q1 
+  if (o1 == 0 && onSegment(p1, p2, q1)) return true; 
+
+  // p1, q1 and q2 are colinear and q2 lies on segment p1q1 
+  if (o2 == 0 && onSegment(p1, q2, q1)) return true; 
+
+  // p2, q2 and p1 are colinear and p1 lies on segment p2q2 
+  if (o3 == 0 && onSegment(p2, p1, q2)) return true; 
+
+  // p2, q2 and q1 are colinear and q1 lies on segment p2q2 
+  if (o4 == 0 && onSegment(p2, q1, q2)) return true; 
+
+  return false; // Doesn't fall in any of the above cases
+} 
+
 void randomizeTriangle() {
   int low = -width/2;
   int high = width/2;
@@ -208,5 +335,6 @@ void keyPressed() {
       spinningTask.run(20);
   if (key == 'y')
     yDirection = !yDirection;
-
+  if (key == 'z')
+    deep = !deep;
 }

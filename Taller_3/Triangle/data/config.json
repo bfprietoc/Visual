@@ -3,16 +3,16 @@
     "orientation": [
       0,
       0,
-      0,
-      1
+      0.6959444880485535,
+      0.7180956602096558
     ],
     "magnitude": 1,
     "position": [
       0,
       0,
-      443.405029296875
+      0
     ]
   },
   "radius": 256,
-  "type": "ORTHOGRAPHIC"
+  "type": "TWO_D"
 }
