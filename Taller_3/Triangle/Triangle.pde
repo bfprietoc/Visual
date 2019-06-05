@@ -17,17 +17,11 @@ int n = 4;
 boolean triangleHint = true;
 boolean gridHint = true;
 boolean debug = true;
-boolean deep = true;
 
 // 3. Use FX2D, JAVA2D, P2D or P3D
-String renderer = P2D;
+String renderer = P3D;
 
-Point punto;
-
-float[] colR = {1,0,0};
-float[] colG = {0,1,0};
-float[] colB = {0,0,1};
-
+float[] dBuffer;
 
 // 4. Window dimension
 int dim = 9;
@@ -89,205 +83,85 @@ float escena[][];
 // Coordinates are given in the node system which has a dimension of 2^n
 
 void triangleRaster() {
-  
-  noStroke();
-  rectMode(CENTER);
-  escena = new float[(int)pow(2, n)][(int)pow(2, n)];
-  float[] rgb = new float[0];
-  float z1 = (1/scene.screenLocation(v1).z());
-  float z2 = (1/scene.screenLocation(v2).z());
-  float z3 = (1/scene.screenLocation(v3).z());
-  
-  for(float i=(0.5-pow(2,n-1)); i<=(0.5+pow(2,n-1)); i++){
-    for(float j=(0.5-pow(2,n-1)); j<=(0.5+pow(2,n-1)); j++){
-      
-      //rect(i,j,0.5,0.5);
-      //float test = (1/scene.screenLocation(v1).z());
-      //float test2 = (1/scene.eye().location(v1).z())*-1000;
-      //println("v1: " + test);
-      //println("v_: " + test2);
-      
-      if(edgeV(v1,v2,v3, i, j)){
-        rgb = edgeColors(v1,v2,v3,i,j);
-        if(deep){
-          float[] lam = edgeFun(v1,v2,v3,i,j);
-          float z = 1/(lam[0] * z1 + lam[1] * z2 + lam[2] * z3); 
-          //println("z: " + z);
-          rgb[0] *= z; rgb[1] *= z; rgb[2] *= z; 
-        }
-        //println(rgb);
-        pushStyle();
-        fill(rgb[0]*255, rgb[1]*255, rgb[2]*255);
-        rect(i,j,1,1);
-        popStyle();
-      } else {
-        int sum=0;
-        int index=0;
-        float prom=0;      
-
-        Vector A= new Vector(i-0.5, j-0.5);
-        Vector B= new Vector(i+0.5, j-0.5);
-        Vector C= new Vector(i-0.5, j+0.5);
-        Vector D= new Vector(i+0.5, j+0.5);
-        int b=0;
-
-        if (i==-3.5&&j==-3.5) { 
-          line(i-0.5, j-0.5, 10, 10);          
-          //ellipse(i-0.5,j-0.5,0.1,0.1);
-          //ellipse(i-0.5,j+0.5,0.1,0.1);          
-          //println(doIntersect(A,C,node.location(v1),node.location(v2)));
-        }
-        
-        if (doIntersect(A, B, node.location(v1), node.location(v2))||doIntersect(B, D, node.location(v1), node.location(v2))||doIntersect(C, D, node.location(v1), node.location(v2))||doIntersect(A, C, node.location(v1), node.location(v2))||
-          doIntersect(A, B, node.location(v2), node.location(v3))||doIntersect(B, D, node.location(v2), node.location(v3))||doIntersect(C, D, node.location(v2), node.location(v3))||doIntersect(A, C, node.location(v2), node.location(v3))||
-          doIntersect(A, B, node.location(v1), node.location(v3))||doIntersect(B, D, node.location(v1), node.location(v3))||doIntersect(C, D, node.location(v1), node.location(v3))||doIntersect(A, C, node.location(v1), node.location(v3))        
-          ) {
-          //println("--");
-          for (float x=i-0.5; x<=i+0.5; x+=0.09) {
-            for (float y=j-0.5; y<=j+0.5; y+=0.09) {
-              index++;
-              if (edgeV(v1, v2, v3, x, y))
-              {
-                sum++;
-                if (b==0)
-                {
-                  b=1;
-                  rgb = edgeColors(v1, v2, v3, x, y);
-                }
-              }
-            }
-          }
-
-          if (sum>0) {
-            //println(sum);
-            //println(sum);
-            prom=float(sum)/float(index);                  
-            //println(rgb);
-            pushStyle();
-            //println(prom);
-            //fill(rgb[0], rgb[1], rgb[2]);
-            fill(rgb[0]*prom, rgb[1]*prom, rgb[2]*prom);
-            //fill(100, 0, 0);                  
-            rect(i, j, 1, 1);                
-            popStyle();
-          }
-        }
-        //End else
-      }
-    }
-  }
-  
-  
   // node.location converts points from world to node
   // here we convert v1 to illustrate the idea
   if (debug) {
     pushStyle();
+  strokeWeight(0);
     stroke(255, 255, 0, 125);
-    point(round(node.location(v1).x()), round(node.location(v1).y()));
-    stroke(200, 100, 0, 125);
-    point(round(node.location(v2).x()), round(node.location(v2).y()));
-    stroke(255, 0, 255, 125);
-    point(round(node.location(v3).x()), round(node.location(v3).y()));
+    //Posicion x,y v1
+    float v1x= (node.location(v1).x());
+    float v1y= (node.location(v1).y());
+    //Posicion x,y v2
+    float v2x= (node.location(v2).x());
+    float v2y= (node.location(v2).y());
+    //Posicion x,y v3
+    float v3x= (node.location(v3).x());
+    float v3y= (node.location(v3).y());
+    
+    float v1z= (scene.eye().location(v1).z())*-1;
+    float v2z= (scene.eye().location(v2).z())*-1;
+    float v3z= (scene.eye().location(v3).z())*-1;
+        
+    FloatList dBuffer=new FloatList();
+    for(int i=0; i<width*height;i++){
+      dBuffer.append(1000);
+    }
+    float aliasing=0.5;
+    float cant= 1/aliasing;
+    point(0,0);
+    
+    int maxx=round(max(v1x,v2x,v3x));
+    int maxy=round(max(v1y,v2y,v3y));
+    int minx=round(min(v1x,v2x,v3x));
+    int miny=round(min(v1y,v2y,v3y));
+    int s=round(width/pow(2, n));
+    
+    for(int px= minx; px<=maxx; px++){
+      for(int py= miny; py<=maxy; py++){
+          
+          boolean dentro=false;
+          float c1=0;
+          float c2=0;
+          float c3=0;
+          //anti aliasing
+          for(float x= px; x<px+1; x+=aliasing){
+            for(float y= py; y<py+1; y+=aliasing){
+              float w1= edgeFunction(v1x,v1y, v2x, v2y, x, y); 
+              float w2= edgeFunction(v2x, v2y, v3x, v3y, x, y); 
+              float w3= edgeFunction(v3x, v3y, v1x,v1y, x, y);
+              if(w1 >= 0 && w2 >= 0 && w3 >= 0){
+                dentro=true;
+                float area=w1+w2+w3;
+                c1+=w1/area;
+                c2+=w2/area;
+                c3+=w3/area;
+              }                  
+            }
+          }
+          if(dentro){
+            fill((c1/cant)*255, (c2/cant)*255, (c3/cant)*255);
+            rect(px, py,1,1);
+            
+            float z= v1z * c1 + v2z * c2 + v3z * c3;
+            if(z< dBuffer.get((height/2+py)*s+(width/2+px))){
+              dBuffer.set((height/2+py)*s+(width/2+px),z);
+            }
+        }
+      }
+    }
+
     popStyle();
   }
 }
 
-float[] edgeFun(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
-  float e1 =((PosX - node.location(v1).x()) * (node.location(v2).y() - node.location(v1).y()) - (PosY - node.location(v1).y()) * (node.location(v2).x() - node.location(v1).x()));
-  float e2 =((PosX - node.location(v2).x()) * (node.location(v3).y() - node.location(v2).y()) - (PosY - node.location(v2).y()) * (node.location(v3).x() - node.location(v2).x()));
-  float e3 =((PosX - node.location(v3).x()) * (node.location(v1).y() - node.location(v3).y()) - (PosY - node.location(v3).y()) * (node.location(v1).x() - node.location(v3).x()));
-  float area = (PosX-node.location(v1).x())*(node.location(v2).y()-node.location(v1).y())-(PosY-node.location(v1).y())*(node.location(v2).x()-node.location(v1).x());
-  if(e1>=0 && e2>=0 && e3>=0  ||  e1<=0 && e2<=0 && e3<=0){
-    float p1 = e1/area;
-    float p2 = e2/area;
-    float p3 = e3/area;
-    float[] pesos = {p1,p2,p3};
-    return pesos;
-  }
-float[] pesos = {0,0,0};
-  return pesos;
+
+float edgeFunction(float ax, float ay, float bx, float by, float px, float py) 
+{ 
+  float ppx=px;
+  float ppy=py;
+  return ((ppx - ax) * (by - ay) - (ppy - ay) * (bx - ax)); 
 }
-
-boolean edgeV(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
-  float e1 =((PosX - node.location(v1).x()) * (node.location(v2).y() - node.location(v1).y()) - (PosY - node.location(v1).y()) * (node.location(v2).x() - node.location(v1).x()));
-  float e2 =((PosX - node.location(v2).x()) * (node.location(v3).y() - node.location(v2).y()) - (PosY - node.location(v2).y()) * (node.location(v3).x() - node.location(v2).x()));
-  float e3 =((PosX - node.location(v3).x()) * (node.location(v1).y() - node.location(v3).y()) - (PosY - node.location(v3).y()) * (node.location(v1).x() - node.location(v3).x()));
-  if(e1>=0 && e2>=0 && e3>=0  ||  e1<=0 && e2<=0 && e3<=0){
-    return true;
-  }else{
-    return false;
-  }
-}
-
-float[] edgeColors(Vector v1, Vector v2, Vector v3, float PosX,float PosY){
-  float e1 =((PosX - node.location(v1).x()) * (node.location(v2).y() - node.location(v1).y()) - (PosY - node.location(v1).y()) * (node.location(v2).x() - node.location(v1).x()));
-  float e2 =((PosX - node.location(v2).x()) * (node.location(v3).y() - node.location(v2).y()) - (PosY - node.location(v2).y()) * (node.location(v3).x() - node.location(v2).x()));
-  float e3 =((PosX - node.location(v3).x()) * (node.location(v1).y() - node.location(v3).y()) - (PosY - node.location(v3).y()) * (node.location(v1).x() - node.location(v3).x()));
-  float area = (PosX-node.location(v1).x())*(node.location(v2).y()-node.location(v1).y())-(PosY-node.location(v1).y())*(node.location(v2).x()-node.location(v1).x());
-  if(e1>=0 && e2>=0 && e3>=0  ||  e1<=0 && e2<=0 && e3<=0){
-    float p1 = e1/area;
-    float p2 = e2/area;
-    float p3 = e3/area;
-    float r = (p1 * colR[0]) + (p2 * colG[0]) + (p3 * colB[0]); 
-    float g = (p1 * colR[1]) + (p2 * colG[1]) + (p3 * colB[1]);
-    float b = (p1 * colR[2]) + (p2 * colG[2]) + (p3 * colB[2]);
-    float[] colors = {r, g, b};
-    return colors;
-  } else { 
-    //println("Outside");
-    float[] colorsneg = {0, 0, 0};
-    return colorsneg;
-  }
-}
-
-
-boolean onSegment(Vector p, Vector q, Vector r) {
-  if (node.location(p).x() <= max(node.location(p).x(), node.location(r).x()) && node.location(q).x() >= min(node.location(p).x(), node.location(r).x()) &&
-    node.location(q).y() <= max(node.location(p).y(), node.location(r).y()) && node.location(q).y() >= min(node.location(p).y(), node.location(r).y())) 
-  {
-    return true;
-  }
-  return false;
-}
-
-int orientation(Vector p, Vector q, Vector r) { 
-  // See https://www.geeksforgeeks.org/orientation-3-ordered-points/ 
-  // for details of below formula. 
-  float val = (node.location(q).y() - node.location(p).y()) * (node.location(r).x() - node.location(q).x()) - 
-    (node.location(q).x() - node.location(p).x()) * (node.location(r).y() - node.location(q).y()); 
-
-  if (val == 0) return 0;  // colinear 
-
-  return (val > 0)? 1: 2; // clock or counterclock wise
-} 
-
-boolean doIntersect(Vector p1, Vector q1, Vector p2, Vector q2) { 
-  // Find the four orientations needed for general and 
-  // special cases 
-  int o1 = orientation(p1, q1, p2); 
-  int o2 = orientation(p1, q1, q2); 
-  int o3 = orientation(p2, q2, p1); 
-  int o4 = orientation(p2, q2, q1); 
-
-  // General case 
-  if (o1 != o2 && o3 != o4) 
-    return true; 
-
-  // Special Cases 
-  // p1, q1 and p2 are colinear and p2 lies on segment p1q1 
-  if (o1 == 0 && onSegment(p1, p2, q1)) return true; 
-
-  // p1, q1 and q2 are colinear and q2 lies on segment p1q1 
-  if (o2 == 0 && onSegment(p1, q2, q1)) return true; 
-
-  // p2, q2 and p1 are colinear and p1 lies on segment p2q2 
-  if (o3 == 0 && onSegment(p2, p1, q2)) return true; 
-
-  // p2, q2 and q1 are colinear and q1 lies on segment p2q2 
-  if (o4 == 0 && onSegment(p2, q1, q2)) return true; 
-
-  return false; // Doesn't fall in any of the above cases
-} 
 
 void randomizeTriangle() {
   int low = -width/2;
@@ -303,6 +177,11 @@ void drawTriangleHint() {
   strokeWeight(2);
   stroke(255, 0, 0);
   triangle(v1.x(), v1.y(), v2.x(), v2.y(), v3.x(), v3.y());
+    if(edgeFunction(v1.x(),v1.y(),v2.x(),v2.y(),v3.x(),v3.y())<0){
+    Vector v=new Vector(v2.x(), v2.y());
+    v2=new Vector(v3.x(), v3.y());
+    v3=new Vector(v.x(), v.y());
+  }
   strokeWeight(5);
   stroke(0, 255, 255);
   point(v1.x(), v1.y());
@@ -335,6 +214,4 @@ void keyPressed() {
       spinningTask.run(20);
   if (key == 'y')
     yDirection = !yDirection;
-  if (key == 'z')
-    deep = !deep;
 }
