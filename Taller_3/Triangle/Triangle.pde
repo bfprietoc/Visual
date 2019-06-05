@@ -24,7 +24,7 @@ String renderer = P3D;
 float[] dBuffer;
 
 // 4. Window dimension
-int dim = 9;
+int dim = 10;
 
 void settings() {
   size(int(pow(2, dim)), int(pow(2, dim)), renderer);
@@ -107,7 +107,7 @@ void triangleRaster() {
     for(int i=0; i<width*height;i++){
       dBuffer.append(1000);
     }
-    float aliasing=0.5;
+    float aliasing=0.25;
     float cant= 1/aliasing;
     point(0,0);
     
@@ -141,6 +141,7 @@ void triangleRaster() {
           }
           if(dentro){
             fill((c1/cant)*255, (c2/cant)*255, (c3/cant)*255);
+            rectMode(CENTER);
             rect(px, py,1,1);
             
             float z= v1z * c1 + v2z * c2 + v3z * c3;
@@ -205,8 +206,10 @@ void keyPressed() {
     n = n >2 ? n-1 : 7;
     node.setScaling(width/pow( 2, n));
   }
-  if (key == 'r')
-    randomizeTriangle();
+  if (key == 'r'){
+      println("entre");
+      randomizeTriangle();
+  }
   if (key == ' ')
     if (spinningTask.isActive())
       spinningTask.stop();
