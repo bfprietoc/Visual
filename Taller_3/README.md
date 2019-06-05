@@ -26,7 +26,10 @@ Complete la tabla:
 
 | Integrante | github nick |
 |------------|-------------|
-|            |             |
+|||
+|||
+|||
+
 
 ## Discusión
 
