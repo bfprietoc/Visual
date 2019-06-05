@@ -22,18 +22,19 @@ Implemente la función ```triangleRaster()``` del sketch adjunto para tal efecto
 
 ## Integrantes
 
-Complete la tabla:
 
 | Integrante | github nick |
 |------------|-------------|
-|||
-|||
-|||
+| Heyner   Martinez  |hsmartineza  |
+| Sergio   Lopez     |SergioLopez40|
+| Brayan   Prieto    |bfprietoc|
 
 
 ## Discusión
 
 Describa los resultados obtenidos. En el caso de anti-aliasing describir las técnicas exploradas, citando las referencias.
+
+* Resultados Obtenidos:
 
 ## Entrega
 
