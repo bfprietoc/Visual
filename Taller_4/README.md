@@ -59,6 +59,4 @@ Hardware:
 - MOTION BLUR Avg FPS: 59-60
 ![homer_4_hard](https://user-images.githubusercontent.com/25939145/60782736-76208400-a10d-11e9-8fd7-ae7a376172ba.png)
 
-## Entrega
-
-Fecha límite ~~Lunes 1/7/19~~ Domingo 7/7/19 a las 24h. Sustentaciones: 10/7/19 y 11/7/19.
+Como se puede observar la diferencia en rendimiento es bastante alta, en hardware los fps se mantienen sobre los 60 casi constantes para cualquier mascara aplicada, mientras que por software se mantienen fluctuando entre 13 y 18 fps. El rendimiento por hardware es bastante alto ya que hace uso de la GPU del computador, comprado por medio del software que no posee estos recurso sino que es realizado por CPU.
