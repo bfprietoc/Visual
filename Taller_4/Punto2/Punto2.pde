@@ -37,8 +37,8 @@ void draw() {
   background(51,25,0);
   scene.render();
   shader(lightShader);
-  lightShader.set("shininess", brillo);
-  lightShader.set( "ambient", new PVector(red(esfera), green(esfera), blue(esfera)).div(255) );
+  lightShader.set("brillo", brillo);
+  lightShader.set( "ambiental", new PVector(red(esfera), green(esfera), blue(esfera)).div(255) );
   
   for(int i = 0;i < NFLuz;i++){
     FLuz[i].cull(false);

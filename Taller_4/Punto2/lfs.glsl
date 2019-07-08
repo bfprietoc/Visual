@@ -3,8 +3,8 @@ uniform vec4 lightPosition[8];
 uniform vec3 lightNormal[8];
 uniform vec3 lightDiffuse[8];
 uniform vec3 lightSpecular[8]; 
-uniform vec3 ambient;
-uniform float shininess;
+uniform vec3 ambiental;
+uniform float brillo;
 uniform bool bump = false; 
 
 uniform sampler2D BumpMap;
@@ -50,17 +50,16 @@ void main() {
     float b = 1.0 / (500*500 * 0.9);
 
     float att = 1.0 / (1.0 + b*lightDistance[i]*lightDistance[i]);
-    //float att = 1.0 / (1.0 + 0.00001*lightDistance[i]*lightDistance[i]);
 
   	vec3 direction_esp = normalize(lightDirTS);
     vec3 ref = reflect( -direction_esp, normal);
 
-  	totalSpecular += lightSpecular[i] * pow(max(0.0, dot(ref, camera)) , shininess)* att;
+  	totalSpecular += lightSpecular[i] * pow(max(0.0, dot(ref, camera)) , brillo)* att;
 
   	vec3 direction_dif = normalize(lightDirTS);
     totalDiffuse += lightDiffuse[i] * max(0.0, dot(direction_dif, normal)) * att;
 
   }
 
-  gl_FragColor = (vec4(ambient, 1) + vec4(totalDiffuse, 1) + vec4(totalSpecular, 1) ) * vec4(vertColor.xyz,1);
+  gl_FragColor = (vec4(ambiental, 1) + vec4(totalDiffuse, 1) + vec4(totalSpecular, 1) ) * vec4(vertColor.xyz,1);
 }
