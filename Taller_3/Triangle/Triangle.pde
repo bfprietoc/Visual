@@ -11,7 +11,7 @@ Vector v1, v2, v3;
 TimingTask spinningTask;
 boolean yDirection;
 // scaling is a power of 2
-int n = 4;
+int n = 8;
 
 // 2. Hints
 boolean triangleHint = true;
@@ -78,7 +78,6 @@ void draw() {
   popMatrix();
 }
 
-float escena[][];
 // Implement this function to rasterize the triangle.
 // Coordinates are given in the node system which has a dimension of 2^n
 
@@ -107,7 +106,8 @@ void triangleRaster() {
     for(int i=0; i<width*height;i++){
       dBuffer.append(1000);
     }
-    float aliasing=0.5;
+    
+    float aliasing=1;
     float cant= 1/aliasing;
     point(0,0);
     
@@ -127,9 +127,9 @@ void triangleRaster() {
           //anti aliasing
           for(float x= px; x<px+1; x+=aliasing){
             for(float y= py; y<py+1; y+=aliasing){
-              float w1= edgeFunction(v1x,v1y, v2x, v2y, x, y); 
+              float w1= edgeFunction(v1x, v1y, v2x, v2y, x, y); 
               float w2= edgeFunction(v2x, v2y, v3x, v3y, x, y); 
-              float w3= edgeFunction(v3x, v3y, v1x,v1y, x, y);
+              float w3= edgeFunction(v3x, v3y, v1x, v1y, x, y);
               if(w1 >= 0 && w2 >= 0 && w3 >= 0){
                 dentro=true;
                 float area=w1+w2+w3;
@@ -141,6 +141,7 @@ void triangleRaster() {
           }
           if(dentro){
             fill((c1/cant)*255, (c2/cant)*255, (c3/cant)*255);
+            rectMode(CENTER);
             rect(px, py,1,1);
             
             float z= v1z * c1 + v2z * c2 + v3z * c3;
@@ -177,7 +178,7 @@ void drawTriangleHint() {
   strokeWeight(2);
   stroke(255, 0, 0);
   triangle(v1.x(), v1.y(), v2.x(), v2.y(), v3.x(), v3.y());
-    if(edgeFunction(v1.x(),v1.y(),v2.x(),v2.y(),v3.x(),v3.y())<0){
+    if(edgeFunction(v1.x(),v1.y(),v2.x(),v2.y(),v3.x(),v3.y())<=0){
     Vector v=new Vector(v2.x(), v2.y());
     v2=new Vector(v3.x(), v3.y());
     v3=new Vector(v.x(), v.y());
