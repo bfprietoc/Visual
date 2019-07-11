@@ -62,6 +62,7 @@ Hardware:
 Como se puede observar la diferencia en rendimiento es bastante alta, en hardware los fps se mantienen sobre los 60 casi constantes para cualquier mascara aplicada, mientras que por software se mantienen fluctuando entre 13 y 18 fps. El rendimiento por hardware es bastante alto ya que hace uso de la GPU del computador, comprado por medio del software que no posee estos recurso sino que es realizado por CPU.
 
 * Punto 2:
+
 Para la realizacion de este punto necesitabamos crear diferentes fuentes de luz, para lo cual utilizando la liberia nub, se crearon dichas fuentes de luz como nodes los cuales se pueden mover con el mouse para poder ver la interaccion con el objeto.
 Inicialmente definimos el objeto que en este caso sera una esfera de color gris y el shader, luego añadiremos la escena en la cual configuramos la perspectiva utilizando setFrustum y luego añadiremos las fuentes de luz en lugares aleatorios de la escena, pero estaran ocultas hasta que el observador active la cantidad de luces que desea utilizando las teclas numericas del 1 al 5. Desde el sketch basicamente solo cargaremos el fragment y vertex shader de iluminacion que creamos. 
 
@@ -72,5 +73,15 @@ https://docs.microsoft.com/es-es/windows/uwp/graphics-concepts/attenuation-and-s
 Donde la atenuación de una luz depende del tipo de luz y de la distancia entre la luz y la posición del vértice
 
 Este es el resultado obtenido del taller con diferentes fuentes de luz
+
+* 1 Fuente de luz:
+
+* 2 Fuentes de luz:
+
+* 3 Fuentes de luz:
+
+* 4 Fuentes de luz:
+
+* 5 Fuentes de luz:
 
 
