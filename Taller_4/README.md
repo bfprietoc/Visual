@@ -89,3 +89,16 @@ Este es el resultado obtenido del taller con diferentes fuentes de luz
 * 5 Fuentes de luz:
 ![5](https://user-images.githubusercontent.com/25939145/61015768-a4db6c00-a352-11e9-8903-bb0abd2cecad.png)
 
+* Punto 3
+
+Los Normal Maps son un tipo de Bump Map. Son un tipo especial de textura que permite  agregar detalles en las superficies como golpes/bultos/bumps, surcos, rayones a un modelo que atrapa la luz como si fuera representado por una geometría real.
+Las fuentes de iluminacion son una parte clave en la generacion del efecto esperado, se usó como base el ejemplo presentado en wikipedia sobre 2d bump mapping [bump mapping effect with light source orbiting trajectory](https://en.wikipedia.org/wiki/Bump_mapping#/media/File:FakeBump2D-animation.gif). Con ayuda de este [ejemplo](https://www.openprocessing.org/sketch/7205/) se logra la implementacion y un efecto aceptable.
+
+- Ejemplo 1:
+
+![imagen](https://user-images.githubusercontent.com/32748870/61025876-a1a6a700-a377-11e9-9594-6cab1239c922.png)
+<img width="660" alt="imagenbump" src="https://user-images.githubusercontent.com/32748870/61025883-a703f180-a377-11e9-9dfa-1b7b68504ed4.png">
+- Ejemplo 2:
+
+![Imagen2](https://user-images.githubusercontent.com/32748870/61025895-ab300f00-a377-11e9-9257-3e4fa4c6497e.png)
+<img width="678" alt="Imagen2bump" src="https://user-images.githubusercontent.com/32748870/61025946-b6833a80-a377-11e9-8a2d-646b6fc4cdc2.png">
