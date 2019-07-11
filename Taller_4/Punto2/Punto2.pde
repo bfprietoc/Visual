@@ -23,7 +23,7 @@ void setup() {
   }   
   for(int i = 0;i < a;i++){
     FLuz[i] = new Sphere(scene, ColorFLuz[i], 50);
-    FLuz[i].setPosition(new Vector(random(-400,400), random(-400,400), random(-400,400)));
+    FLuz[i].setPosition(new Vector(random(-600,600), random(-600,600), random(-600,600)));
     FLuz[i].cull(true);
   }  
   lightShader = loadShader("lfs.glsl", "lvs.glsl");

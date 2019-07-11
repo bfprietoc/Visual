@@ -19,17 +19,15 @@ void main() {
   vec3 totalSpecular = vec3(0, 0, 0);
   for(int i = 0; i < lightCount; i++){
 
-    vec3 lightDir = mat3(vec3(1,0,0), vec3(0,1,0), vec3(0,0,1)) * normalize( lightDir[i] );
-    
-    float b = 1.0 / (500*500 * 0.9);
+    vec3 lightDir = mat3(vec3(1,0,0), vec3(0,1,0), vec3(0,0,1)) * normalize( lightDir[i] );    
+    float b = 1.0 / (900*900 * 0.5);
     float atenuacion = 1.0 / (1.0 + b*lightDistance[i] + b*pow(lightDistance[i],2));
 
-  	vec3 direction_esp = normalize(lightDir);
-    vec3 direction_dif = normalize(lightDir);
-    vec3 ref = reflect( -direction_esp, normal);
+    vec3 direction = normalize(lightDir);
+    vec3 ref = reflect( -direction, normal);
 
   	totalSpecular += lightSpecular[i] * pow(max(0.0, dot(ref, camera)) , brillo)* atenuacion;	
-    totalDiffuse += lightDiffuse[i] * max(0.0, dot(direction_dif, normal)) * atenuacion;
+    totalDiffuse += lightDiffuse[i] * max(0.0, dot(direction, normal)) * atenuacion;
   }
 
   gl_FragColor = (vec4(ambiental, 1) + vec4(totalDiffuse, 1) + vec4(totalSpecular, 1) ) * vec4(vertColor.xyz,1);

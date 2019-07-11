@@ -25,7 +25,6 @@ void main() {
   
   for(int i = 0; i < lightCount; i++){
   	lightDir[i] = normalize(lightPosition[i].xyz - ecPosition);
-  	vec3 lightDirection = normalize(lightPosition[i].xyz - ecPosition);
     lightDistance[i] = distance(lightPosition[i].xyz,ecPosition);
   }  
   cameraDirection = normalize(0 - ecPosition);  
