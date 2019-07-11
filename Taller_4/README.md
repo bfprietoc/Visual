@@ -74,22 +74,18 @@ Donde la atenuación de una luz depende del tipo de luz y de la distancia entre 
 
 Este es el resultado obtenido del taller con diferentes fuentes de luz
 
-![3](https://user-images.githubusercontent.com/25939145/61015767-a4db6c00-a352-11e9-92b2-28ac0e921f81.jpg)
-![5](https://user-images.githubusercontent.com/25939145/61015768-a4db6c00-a352-11e9-8903-bb0abd2cecad.png)
-![4](https://user-images.githubusercontent.com/25939145/61015769-a4db6c00-a352-11e9-812e-27264bfddf7e.png)
-![1 (1)](https://user-images.githubusercontent.com/25939145/61015770-a4db6c00-a352-11e9-98d2-1e7302a45593.jpg)
-![2](https://user-images.githubusercontent.com/25939145/61015771-a4db6c00-a352-11e9-8048-1ede54d3b439.jpg)
-
-
-
 * 1 Fuente de luz:
+![1 (1)](https://user-images.githubusercontent.com/25939145/61015770-a4db6c00-a352-11e9-98d2-1e7302a45593.jpg)
 
 * 2 Fuentes de luz:
+![2](https://user-images.githubusercontent.com/25939145/61015771-a4db6c00-a352-11e9-8048-1ede54d3b439.jpg)
 
 * 3 Fuentes de luz:
+![3](https://user-images.githubusercontent.com/25939145/61015767-a4db6c00-a352-11e9-92b2-28ac0e921f81.jpg)
 
 * 4 Fuentes de luz:
+![4](https://user-images.githubusercontent.com/25939145/61015769-a4db6c00-a352-11e9-812e-27264bfddf7e.png)
 
 * 5 Fuentes de luz:
-
+![5](https://user-images.githubusercontent.com/25939145/61015768-a4db6c00-a352-11e9-8903-bb0abd2cecad.png)
 
